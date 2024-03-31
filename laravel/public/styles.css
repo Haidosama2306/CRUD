@@ -1,0 +1,47 @@
+/* ----- DASHBOARD ----- */
+.head {
+    position: relative;
+    padding: 20px 0;
+    margin-bottom: 50px;
+    background-color: #e3f2fd;
+}
+.header {
+    list-style-type: none;
+    text-align: center;
+}
+.header li {
+    display: inline-block;
+}
+.a-home {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+}
+.a-item {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    padding-left: 10px;
+    border-left: 1px solid #000;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    padding: 20px 0;
+    background-color: #e3f2fd;
+    text-align: center;
+}
+/* ----- LOGIN ----- */
+.login-card {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 300px);
+    border: 1px solid #000;
+}
+.login-header {
+    text-align: center;
+    margin: 10px;
+}
