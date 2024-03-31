@@ -2,33 +2,28 @@
 
 @section('content')
 <div class="login-card">
-    <h3 class="login-header">Màn hình đăng nhập</h3>
+    <h3 class="title-header">Màn hình đăng nhập</h3>
     <div class="card-body">
         <form method="POST" action="{{ route('user.authUser') }}">
             @csrf
             <div class="input">
                 <label for="email">Email</label>
-                <input type="text" placeholder="Email" id="email" class="form-control" name="email" required autofocus>
-                @if ($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
+                <input type="text" placeholder="Email" id="email" name="email" required autofocus>
             </div>
             <div class="input">
-                Password <input type="password" placeholder="Password" id="password" class="form-control"
+                <label for="password">Mật khẩu</label>
+                 <input type="password" placeholder="Mật khẩu" id="password"
                     name="password" required>
-                @if ($errors->has('password'))
-                <span class="text-danger">{{ $errors->first('password') }}</span>
-                @endif
             </div>
-            <div class="form-group mb-3">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember"> Remember Me
-                    </label>
-                </div>
+            <div class="remember-me">
+                <label>
+                    <input type="checkbox" name="remember">
+                    <label for="remember">Ghi nhớ mật khẩu</label>
+                </label>
             </div>
-            <div class="d-grid mx-auto">
-                <button type="submit" class="btn btn-dark btn-block">Signin</button>
+            <div class="submit">
+                <a href="#">Quên mật khẩu</a>
+                <button type="submit" class="btn btn-dark btn-block">Đăng nhập</button>
             </div>
         </form>
     </div>

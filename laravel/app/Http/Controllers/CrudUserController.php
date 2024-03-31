@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Hash;
+use Illuminate\Validation\ValidationException;
 use Session;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,19 +17,18 @@ class CrudUserController extends Controller
 
     public function authUser(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
 
-        $credentials = $request->only('email', 'password');
+            $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('list')
-                ->withSuccess('Signed in');
-        }
-
-        return redirect("login")->withErrors('Login details are not valid');
+            if (Auth::attempt($credentials)) {
+                return redirect()->intended('list')
+                    ->withSuccess('Đăng nhập thành công');
+            }
+            return redirect("login")->withError('Đăng nhập thất bại');
     }
 
     public function createUser()
@@ -38,20 +38,26 @@ class CrudUserController extends Controller
 
     public function postUser(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6|confirmed',
+                'password_confirmation' => 'required|min:6',
+            ]);
 
-        $data = $request->all();
-        $check = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
+            $data = $request->all();
+            $check = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password'])
+            ]);
 
-        return redirect("login");
+            return redirect("login")->withSuccess('Tạo tài khoản thành công');
+        } catch (ValidationException $e) {
+            return redirect("create")->withError('Tạo tài khoản không thành công');
+        }
+
     }
 
     public function readUser(Request $request) {
@@ -71,12 +77,14 @@ class CrudUserController extends Controller
 
     public function postUpdateUser(Request $request)
     {
-        $input = $request->all();
+        try {
+            $input = $request->all();
 
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,id,'.$input['id'],
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
         ]);
 
        $user = User::find($input['id']);
@@ -85,14 +93,18 @@ class CrudUserController extends Controller
        $user->password = $input['password'];
        $user->save();
 
-        return redirect("list")->withSuccess('Update Success');
+        return redirect("list")->withSuccess('Cập nhật thành công');
+        } catch (ValidationException $e) {
+            return redirect("list")->withError('Cập nhật không thành công');
+        }
+
     }
 
     public function deleteUser(Request $request) {
         $user_id = $request->get('id');
         $user = User::destroy($user_id);
 
-        return redirect("list")->withSuccess('Deleted User '. $user_id);
+        return redirect("list")->withSuccess('Đã xóa user '. $user_id);
     }
 
     public function listUser()
@@ -102,13 +114,13 @@ class CrudUserController extends Controller
             return view('auth.list', ['users' => $users]);
         }
 
-        return redirect("login")->withErrors('You are not allowed to access');
+        return redirect("login")->withError('Bạn cần phải đăng nhập');
     }
 
     public function signOut() {
         Session::flush();
         Auth::logout();
 
-        return Redirect('login')->withSuccess('Logout');
+        return Redirect('login')->withSuccess('Đăng xuất thành công');
     }
 }
