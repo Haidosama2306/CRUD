@@ -28,7 +28,7 @@ class CrudUserController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("login")->withErrors('Login details are not valid');
     }
 
     public function createUser()
@@ -54,6 +54,40 @@ class CrudUserController extends Controller
         return redirect("login");
     }
 
+    public function readUser(Request $request) {
+        $user_id = $request->get('id');
+        $user = User::find($user_id);
+
+        return view('auth.read', ['user' => $user]);
+    }
+
+    public function updateUser(Request $request)
+    {
+        $user_id = $request->get('id');
+        $user = User::find($user_id);
+
+        return view('auth.update', ['user' => $user]);
+    }
+
+    public function postUpdateUser(Request $request)
+    {
+        $input = $request->all();
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,id,'.$input['id'],
+            'password' => 'required|min:6',
+        ]);
+
+       $user = User::find($input['id']);
+       $user->name = $input['name'];
+       $user->email = $input['email'];
+       $user->password = $input['password'];
+       $user->save();
+
+        return redirect("list")->withSuccess('Update Success');
+    }
+
     public function listUser()
     {
         if(Auth::check()){
@@ -61,13 +95,13 @@ class CrudUserController extends Controller
             return view('auth.list', ['users' => $users]);
         }
 
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("login")->withErrors('You are not allowed to access');
     }
 
     public function signOut() {
         Session::flush();
         Auth::logout();
 
-        return Redirect('login');
+        return Redirect('login')->withSuccess('Logout');
     }
 }
