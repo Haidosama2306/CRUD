@@ -31,6 +31,29 @@ class CrudUserController extends Controller
         return redirect("login")->withSuccess('Login details are not valid');
     }
 
+    public function createUser()
+    {
+        return view('auth.create');
+    }
+
+    public function postUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+
+        $data = $request->all();
+        $check = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+
+        return redirect("login");
+    }
+
     public function listUser()
     {
         if(Auth::check()){
