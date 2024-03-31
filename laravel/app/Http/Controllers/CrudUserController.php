@@ -88,6 +88,13 @@ class CrudUserController extends Controller
         return redirect("list")->withSuccess('Update Success');
     }
 
+    public function deleteUser(Request $request) {
+        $user_id = $request->get('id');
+        $user = User::destroy($user_id);
+
+        return redirect("list")->withSuccess('Deleted User '. $user_id);
+    }
+
     public function listUser()
     {
         if(Auth::check()){

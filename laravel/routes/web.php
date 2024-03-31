@@ -28,6 +28,8 @@ Route::get('read', [CrudUserController::class, 'readUser'])->name('user.readUser
 Route::get('update', [CrudUserController::class, 'updateUser'])->name('user.updateUser');
 Route::post('update', [CrudUserController::class, 'postUpdateUser'])->name('user.postUpdateUser');
 
+Route::get('delete', [CrudUserController::class, 'deleteUser'])->name('user.deleteUser');
+
 Route::get('list', [CrudUserController::class, 'listUser'])->name('user.list');
 
 Route::get('signout', [CrudUserController::class, 'signOut'])->name('signout');
