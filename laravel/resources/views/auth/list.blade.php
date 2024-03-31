@@ -1,12 +1,12 @@
 @extends('dashboard')
 
 @section('content')
-<main class="login-form">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="list-user">
+        <h3 class="title-header">Danh sách Users</h3>
             <table>
                 <thead>
-                    <tr>
+                    <tr class="title">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -15,11 +15,11 @@
                 </thead>
                 <tbody>
                     @foreach($users as $user)
-                    <tr>
-                        <th>{{ $user->id }}</th>
-                        <th>{{ $user->name }}</th>
-                        <th>{{ $user->email }}</th>
-                        <th>
+                    <tr class="body">
+                        <th class="id">{{ $user->id }}</th>
+                        <th class="name">{{ $user->name }}</th>
+                        <th class="email">{{ $user->email }}</th>
+                        <th class="action">
                             <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                             <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
                             <a href="{{ route('user.deleteUser', ['id' => $user->id]) }}">Delete</a>
@@ -30,5 +30,4 @@
             </table>
         </div>
     </div>
-</main>
 @endsection

@@ -1,0 +1,166 @@
+/* ----- DASHBOARD ----- */
+.head {
+    position: relative;
+    padding: 20px 0;
+    margin-bottom: 50px;
+    background-color: #e3f2fd;
+}
+.header {
+    list-style-type: none;
+    text-align: center;
+}
+.header li {
+    display: inline-block;
+}
+.a-home {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+}
+.a-item {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    padding-left: 10px;
+    border-left: 1px solid #000;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    padding: 20px 0;
+    background-color: #e3f2fd;
+    text-align: center;
+    font-size: 18px;
+}
+/* ----- LOGIN ----- */
+.login-card {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 300px);
+    border: 1px solid #000;
+}
+.title-header {
+    text-align: center;
+    margin: 10px;
+}
+.input {
+    padding: 30px 20px;
+}
+.input label {
+    width: 100px;
+    font-size: 20px;
+}
+.input input {
+    margin-left: 40px;
+    width: 350px;
+    height: 40px;
+}
+.remember-me {
+    padding: 20px 20px;
+}
+.remember-me label {
+    font-size: 18px;
+}
+.remember-me input {
+    width: 20px;
+    height: 20px;
+    margin-left: 100px;
+}
+.submit {
+    padding: 10px 20px;
+}
+.submit a {
+    position: absolute;
+    left: 150px;
+    bottom: 35px;
+    font-size: 20px;
+    text-decoration: none;
+}
+.submit button {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+    width: 200px;
+    background-color: blue;
+    color: white;
+    border: none;
+}
+/* ----- REGISTRATION ----- */
+.regis-card {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: calc(50% - 300px);
+    left: calc(50% - 300px);
+    border: 1px solid #000;
+}
+/* ----- UPDATE ----- */
+.update-card {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: calc(50% - 300px);
+    left: calc(50% - 300px);
+    border: 1px solid #000;
+}
+/* ----- LIST_USERS ----- */
+.list-user {
+
+}
+.list-user table {
+    position: absolute;
+    width: 1000px;
+    left: calc(50% - 500px);
+    border: 1px solid #000;
+}
+table th {
+    padding: 10px 5px;
+
+}
+table .title {
+    border: 1px solid #000;
+    text-align: center;
+}
+.title th {
+    border: 1px solid #000;
+}
+table .body th{
+    border-left: 1px solid #000;
+}
+.body .id {
+    text-align: center;
+}
+.body .email {
+    width: 400px;
+}
+.body .action {
+    text-align: center;
+    width: 200px;
+}
+.action a {
+    color: #000;
+    text-decoration: none;
+}
+/* ----- VIEW USER ----- */
+.view-card {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 300px);
+    border: 1px solid #000;
+}
+.info label {
+    width: 100px;
+    padding: 20px 0 20px 60px;
+    font-size: 24px;
+}
+.info p {
+    padding-left: 100px;
+    font-size: 24px;
+    font-weight: 600;
+    display: inline-block;
+}
