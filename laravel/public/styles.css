@@ -144,6 +144,17 @@ table .body th{
     color: #000;
     text-decoration: none;
 }
+
+.paginate {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    bottom: 150px;
+    left: calc(50% - 100px);
+}
+.paginate nav ul li {
+    padding: 5px;
+}
 /* ----- VIEW USER ----- */
 .view-card {
     position: absolute;

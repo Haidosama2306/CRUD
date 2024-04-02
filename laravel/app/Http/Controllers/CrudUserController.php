@@ -110,8 +110,8 @@ class CrudUserController extends Controller
     public function listUser()
     {
         if(Auth::check()){
-            $users = User::all();
-            return view('auth.list', ['users' => $users]);
+            $users = User::paginate(8);
+            return view('auth.list', ['users' => $users])->with('i',(request()->input('page',1) -1) *5);
         }
 
         return redirect("login")->withError('Bạn cần phải đăng nhập');
