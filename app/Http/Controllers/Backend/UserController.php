@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\UserServiceInterface as UserService;
 use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -33,5 +34,20 @@ class UserController extends Controller
         $user=$this->userRepository->findById($id);
 
         return view('Backend.dashboard.layout', compact('template','config','user'));
+    }
+    public function edit($id){
+        $template='Backend.user.user.edit';
+
+        $config['method']='update';
+        
+        $user=$this->userRepository->findById($id);
+
+        return view('Backend.dashboard.layout', compact('template','config','user'));
+    }
+    public function update($id, UpdateUserRequest $request){
+        if($this->userService->updateUser($id, $request)){
+            return redirect()->route('user.index')->with('success','Cập nhật thành viên thành công');
+        }
+           return redirect()->route('user.index')->with('error','Cập nhật thành viên thất bại. Hãy thử lại');
     }
 }

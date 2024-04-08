@@ -12,6 +12,7 @@
                     </li>
                 </ul>
             </div>
+            <div class="navbar-text">Xin chào: {{ $user_name->name }}</div>
         </div>
     </nav>
 </div>
