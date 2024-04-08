@@ -35,7 +35,7 @@
                                     <label class="form-check-label" for="remember">Nhớ đăng nhập</label>
                                 </div> -->
                                 <button type="submit" class="btn btn-primary" name="btnSubmit">Đăng nhập</button>
-                                <a href="" class="btn btn-success">Đăng ký</a>
+                                <a href="{{ route('auth.register.admin') }}" class="btn btn-success">Đăng ký</a>
                             </form>
                         </div>
                     </div>
