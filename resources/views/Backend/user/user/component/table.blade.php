@@ -33,7 +33,7 @@
             <td class="text-center">
                 <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                 <a href="{{ route('user.read', $user->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </td>
         </tr>
         @endforeach
