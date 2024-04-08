@@ -17,4 +17,5 @@ interface UserRepositoryInterface
     );
 
     public function create(array $payload =[]);
+    public function findById(int $id, array $column=['*'], array $relation =[]);
 }

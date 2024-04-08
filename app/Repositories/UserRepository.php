@@ -47,4 +47,7 @@ class UserRepository implements UserRepositoryInterface
         $model = $this->model->create($payload);
         return $model->fresh();
     }
+    public function findById(int $id, array $column=['*'], array $relation =[]){
+        return $this->model->select($column)->with($relation)->findOrFail($id);
+    }
 }

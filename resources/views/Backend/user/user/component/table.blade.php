@@ -32,7 +32,7 @@
             </td>
             <td class="text-center">
                 <a href="update.html" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                <a href="view.html" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                <a href="{{ route('user.read', $user->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                 <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </td>
         </tr>
