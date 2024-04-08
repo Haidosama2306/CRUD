@@ -26,4 +26,10 @@ class AuthController extends Controller
             return redirect()->route('auth.admin')->with('error','Email hoặc mật khẩu không chính xác');
         }
     }
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('auth.admin');
+    }
 }
