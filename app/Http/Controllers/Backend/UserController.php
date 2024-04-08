@@ -50,4 +50,17 @@ class UserController extends Controller
         }
            return redirect()->route('user.index')->with('error','Cập nhật thành viên thất bại. Hãy thử lại');
     }
+    public function destroy($id){
+        $template='Backend.user.user.destroy';
+        
+        $user=$this->userRepository->findById($id);
+
+        return view('Backend.dashboard.layout', compact('template','user'));
+    }
+    public function delete($id){
+        if($this->userService->deleteUser($id)){
+            return redirect()->route('user.index')->with('success','Xóa thành viên thành công');
+        }
+           return redirect()->route('user.index')->with('error','Xóa thành viên thất bại. Hãy thử lại');
+    }
 }

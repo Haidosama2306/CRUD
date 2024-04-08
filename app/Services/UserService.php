@@ -49,14 +49,25 @@ class UserService implements UserServiceInterface
     public function updateUser($id, $request){
         DB::beginTransaction();
         try{
-            $user=$this->userRepository->findById($id);
             $payload = $request->except('_token','send','repassword');
             if($payload['password'] == null){
-                $payload['password'] = $user->password;
+                $payload['password'] = auth()->user()->password;
             }else{
                 $payload['password']=Hash::make($payload['password']);
             }                  
             $user=$this->userRepository->update($id, $payload);
+            DB::commit();
+            return true;
+        }catch(\Exception $ex){
+            DB::rollBack();
+            echo $ex->getMessage();//die();
+            return false;
+        }
+    }
+    public function deleteUser($id){
+        DB::beginTransaction();
+        try{               
+            $user=$this->userRepository->delete($id);
             DB::commit();
             return true;
         }catch(\Exception $ex){

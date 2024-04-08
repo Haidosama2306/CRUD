@@ -54,4 +54,7 @@ class UserRepository implements UserRepositoryInterface
         $model=$this->findById($id);
         return $model->update($payload);
     }
+    public function delete(int $id=0){
+        return $this->findById($id)->delete();
+    }
 }
