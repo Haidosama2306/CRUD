@@ -21,8 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin',[AuthController::class, 'index'])->name('auth.admin')->middleware(LoginMiddleware::class);
+Route::get('login/admin',[AuthController::class, 'indexLogin'])->name('auth.login.admin')->middleware(LoginMiddleware::class);
 Route::post('login',[AuthController::class, 'login'])->name('auth.login');
 Route::get('logout',[AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('dashboard/index',[DashboardController::class, 'index'])->name('dashboard.index')->middleware(AuthenticateMiddleware::class);
+
+Route::get('register/admin',[AuthController::class, 'indexRegister'])->name('auth.register.admin')->middleware(LoginMiddleware::class);
+Route::post('create',[AuthController::class, 'create'])->name('auth.create')->middleware(LoginMiddleware::class);

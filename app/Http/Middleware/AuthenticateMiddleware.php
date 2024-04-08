@@ -18,7 +18,7 @@ class AuthenticateMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::id()==null){
-            return redirect()->route('auth.admin')->with('error','Vui lòng đăng nhập để sử dụng chức năng này');
+            return redirect()->route('auth.login.admin')->with('error','Vui lòng đăng nhập để sử dụng chức năng này');
         }
         return $next($request);
     }
