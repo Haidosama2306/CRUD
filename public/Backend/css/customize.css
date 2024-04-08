@@ -6,3 +6,34 @@
     text-align: center;
     padding: 10px 0;
 }
+.table .imageUser{
+    height: 73px;
+    display: block;
+}
+.img-cover img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.uk-flex-space-between{
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.uk-flex-middle{
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+    align-items: center;
+}
+.uk-flex{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.filter-wrapper{
+    margin-bottom: 20px;
+}
+.filter-wrapper .perpage{
+    display: inline-block;
+}
