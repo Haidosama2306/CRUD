@@ -33,6 +33,8 @@ Route::post('create',[AuthController::class, 'create'])->name('auth.create')->mi
 
 Route::group(['prefix'=>'user'], function(){
     Route::get('index',[UserController::class, 'index'])->name('user.index')->middleware(AuthenticateMiddleware::class);
+
+    Route::get('{id}/read',[UserController::class, 'read'])->name('user.read')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
     
     Route::get('{id}/edit',[UserController::class, 'edit'])->name('user.edit')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
     Route::post('{id}/update',[UserController::class, 'update'])->name('user.update')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
