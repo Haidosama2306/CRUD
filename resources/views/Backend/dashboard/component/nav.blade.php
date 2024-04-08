@@ -5,7 +5,7 @@
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.html">Đăng xuất</a>
+                        <a class="nav-link" href="{{ route('auth.logout') }}">Đăng xuất</a>
                     </li>
                 </ul>
             </div>
