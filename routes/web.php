@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\LoginMiddleware;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,13 @@ Route::get('dashboard/index',[DashboardController::class, 'index'])->name('dashb
 
 Route::get('register/admin',[AuthController::class, 'indexRegister'])->name('auth.register.admin')->middleware(LoginMiddleware::class);
 Route::post('create',[AuthController::class, 'create'])->name('auth.create')->middleware(LoginMiddleware::class);
+
+Route::group(['prefix'=>'user'], function(){
+    Route::get('index',[UserController::class, 'index'])->name('user.index')->middleware(AuthenticateMiddleware::class);
+    
+    Route::get('{id}/edit',[UserController::class, 'edit'])->name('user.edit')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
+    Route::post('{id}/update',[UserController::class, 'update'])->name('user.update')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
+
+    Route::get('{id}/destroy',[UserController::class, 'destroy'])->name('user.destroy')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
+    Route::post('{id}/delete',[UserController::class, 'delete'])->name('user.delete')->where(['id'=>'[0-9]+'])->middleware(AuthenticateMiddleware::class);
+});

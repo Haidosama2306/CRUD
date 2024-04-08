@@ -27,7 +27,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard.index')->with('success','Đăng nhập thành công');
         }
         else{
-            return redirect()->route('auth.admin')->with('error','Email hoặc mật khẩu không chính xác');
+            return redirect()->route('auth.login.admin')->with('error','Email hoặc mật khẩu không chính xác');
         }
     }
     public function logout(Request $request){

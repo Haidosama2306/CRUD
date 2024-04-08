@@ -22,7 +22,7 @@ class UserService implements UserServiceInterface
 
     public function paginate($request){
         $condition['keyword']=addslashes($request->input('keyword'));
-        $perpage=$request->integer('perpage', 20);
+        $perpage=$request->integer('perpage', 5);
         $users=$this->userRepository->pagination(
             $this->paginateSelect(), 
             $condition, 
@@ -49,7 +49,7 @@ class UserService implements UserServiceInterface
 
     private function paginateSelect(){
         return [
-            'id','email','phone','address','name','image','publish','user_catalogue_id'
+            'id','email','phone','name','image'
         ];
     }
 }

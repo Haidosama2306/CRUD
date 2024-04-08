@@ -6,7 +6,6 @@
 </head>
 <body>
     <div class="bg-light">
-        @include('Backend.dashboard.component.nav')
         <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6">
