@@ -22,9 +22,13 @@ class CrudUserController extends Controller
                 'password' => 'required',
             ]);
 
-            $credentials = $request->only('email', 'password');
+            $credentials = $request->only('email','password');
+
+            // đăng nhập với request vào bất kỳ vẫn nhận emial,password cố định
+            // $credentials = ['email'=>'abc@mail.com','password'=>'123456'];
 
             if (Auth::attempt($credentials)) {
+
                 return redirect()->intended('list')
                     ->withSuccess('Đăng nhập thành công');
             }
