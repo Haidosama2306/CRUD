@@ -10,6 +10,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Favorite</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -19,6 +20,9 @@
                     <th class="id">{{ $user->id }}</th>
                     <th class="name">{{ $user->name }}</th>
                     <th class="email">{{ $user->email }}</th>
+                    <th class="favorite">{!! $user->favorite !!}</th>
+                    <!-- <th class="favorite">{!! strip_tags($user->favorite) !!}</th> -->
+                    <!-- <th class="favorite">{!! htmlspecialchars($user->favorite) !!}</th> -->
                     <th class="action">
                         <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                         <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |

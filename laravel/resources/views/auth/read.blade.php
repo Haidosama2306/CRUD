@@ -15,6 +15,10 @@
         <label>Email</label>
         <p>{{$user->email}}</p>
     </div>
+    <div class="info">
+        <label>Favorite</label>
+        <p>{{$user->favorite}}</p>
+    </div>
     <div class="submit">
         <button type="submit" class="btn btn-dark btn-block">Chỉnh sửa</button>
     </div>

